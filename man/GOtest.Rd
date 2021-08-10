@@ -92,7 +92,7 @@ str(universe)
 
 #Now let us run enrichment of MacArthur gene sets against the MSigDB canonical pathways.
 
-result=msigdb.gsea(x=MAGenes, query.population=universe, genesets=c('C2.CP'),
+result=msigdb.gsea(x=MAGenes, query.population=universe, genesets=c('c2.cp'),
 	background='query', name.x='MacArthur')
 head(result)
 
@@ -111,7 +111,7 @@ universe=curated.genesets(c('HGNC_universe'))$Gene
 #of random gene-phenotype associations.
 
 set.seed(123)
-toy=data.frame(Gene=universe,Phenotype='Simulated',Z=rnorm(n,0,1),stringsAsFactors=FALSE)
+toy=data.frame(Gene=universe, Phenotype='Simulated', Z=rnorm(n,0,1), stringsAsFactors=FALSE)
 
 #Select genes with absolute Z value larger than 3 
 #and separate them into up and down groups based on the sign of Z value, 

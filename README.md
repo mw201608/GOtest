@@ -1,9 +1,9 @@
 # GOtest: Gene Ontology and Set Enrichment Test
 
 ## Dependency
-R package `msigdb` is required to run this tool. You can install it from github by
+R package `msigdbi` is required to run this tool. You can install it from github by
 ```
-devtools::install_github("mw201608/msigdb")
+devtools::install_github("mw201608/msigdbi")
 ```
 
 ## Installation

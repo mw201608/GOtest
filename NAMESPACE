@@ -1,5 +1,5 @@
 useDynLib(GOtest, .registration = TRUE)
-import(msigdb)
+import(msigdbi)
 export(
 	msigdb.gsea,
 	merck.gsea,
@@ -19,4 +19,5 @@ importFrom("grDevices", "heat.colors", "rgb")
 importFrom("Matrix", "sparseMatrix", "crossprod","colSums")
 importFrom("graphics", "axis", "barplot", "lines", "par", "plot",
 	"polygon", "rect", "text")
-importFrom("stats", "dist", "hclust", "p.adjust", "phyper","binomial","coef","glm","setNames")
+importFrom("stats", "dist", "hclust", "p.adjust", "phyper",
+	"binomial", "coef", "glm", "setNames")
