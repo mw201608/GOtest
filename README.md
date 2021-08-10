@@ -29,7 +29,7 @@ For details about function `curated.genesets`, check help `?curated.genesets`.
 Now let us run enrichment of MacArthur gene sets against the canonical pathways in MSigDB annotation.
 
 ```
-result = msigdb.gsea(x=MAGenes, query.population=universe, genesets=c('C2.CP'), background='query', name.x='MacArthur')
+result = msigdb.gsea(x=MAGenes, query.population=universe, genesets=c('c2.cp'), background='query', name.x='MacArthur')
 head(result)
 ```
 
@@ -46,7 +46,7 @@ universe = curated.genesets(c('HGNC_universe'))$Gene
 In this example, we will try both the hypergeometric test and weighted enrichment tests, including GSEA and logistic regression, by geneating a toy dataset through simulation of random gene-phenotype associations. 
 ```
 set.seed(123)
-toy = data.frame(Gene=universe,Phenotype='Simulated',Z=rnorm(n,0,1),stringsAsFactors=FALSE)
+toy = data.frame(Gene=universe, Phenotype='Simulated', Z=rnorm(n,0,1), stringsAsFactors=FALSE)
 ```
 
 Select genes with absolute Z value larger than 3 and separate them into up and down groups based on the sign of Z value, then run the hypergeometric test on both groups against the MacAuther gene sets:
