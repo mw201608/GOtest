@@ -3,7 +3,7 @@
 ## Dependency
 R package `msigdbi` is required to run this tool. You can install it from github by
 ```
-devtools::install_github("mw201608/msigdbi")
+devtools::install_github("mw201608/msigdb")
 ```
 
 ## Installation
