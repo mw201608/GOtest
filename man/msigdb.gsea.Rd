@@ -6,17 +6,17 @@
   These functions perform gene set enrichment analyses based on MSigDB or Merck collections.
 }
 \usage{
-msigdb.gsea(x, query.population=NULL, genesets=c('C2.CP','C5.BP','C5.CC','C5.MF'),
+msigdb.gsea(x, query.population=NULL, genesets=c('c2.cp', 'c5.go.bp', 'c5.go.cc', 'c5.go.mf'),
  background='common', name.x='Input', name.go='MSigDB',
- method=c('hypergeometric','GSEA','logitreg'), adj="BH", species=c('human','mouse'),
+ method=c('hypergeometric', 'GSEA', 'logitreg'), adj="BH", species=c('human', 'mouse'),
  ReportOverlap=TRUE, ncores=1, gsea.alpha=1,
- permutations=ifelse(method=='GSEA',1000,0), iseed=12345)
+ permutations=ifelse(method=='GSEA', 1000, 0), iseed=12345)
 merck.gsea(x, query.population=NULL, genesets=c('GO CC', 'GO MF', 'GO BP',
  'KEGG PATHWAYS', 'INGENUITY PATHWAYS', 'GENEGO PATHWAYS'),
  background='common', name.x='Input', name.go='Merck',
- method=c('hypergeometric','GSEA','logitreg'), adj="BH", species=c('human','mouse','rat'),
+ method=c('hypergeometric', 'GSEA', 'logitreg'), adj="BH", species=c('human', 'mouse', 'rat'),
  ReportOverlap=TRUE, ncores=1, gsea.alpha=1,
- permutations=ifelse(method=='GSEA',1000,0), iseed=12345)
+ permutations=ifelse(method=='GSEA', 1000, 0), iseed=12345)
 }
 \arguments{
  \item{x}{a data.frame of query gene signatures. See \code{Details}.}
@@ -59,7 +59,7 @@ universe=curated.genesets(c('HGNC_universe'))$Gene
 #through simulation of random gene-phenotype associations.
 
 set.seed(123)
-toy=data.frame(Gene=universe,Phenotype='Simulated',Z=rnorm(n,0,1),stringsAsFactors=FALSE)
+toy=data.frame(Gene=universe, Phenotype='Simulated', Z=rnorm(n, 0, 1), stringsAsFactors=FALSE)
 
 #Select genes with absolute Z value larger than 3 and separate them into up and down groups 
 #based on the sign of Z value, then run the hypergeometric test on both groups
@@ -67,7 +67,7 @@ toy=data.frame(Gene=universe,Phenotype='Simulated',Z=rnorm(n,0,1),stringsAsFacto
 
 toy.3=toy[abs(toy$Z)>3,]
 toy.3$Direction=ifelse(toy.3$Z > 0, 'Up','Down')
-fit1=GOtest(x=toy.3[,c('Gene','Direction')], go=MAGenes, query.population=universe,
+fit1=GOtest(x=toy.3[, c('Gene', 'Direction')], go=MAGenes, query.population=universe,
 	background='query', name.x='Toy', name.go='MacArthur', method='hypergeometric')
 
 #As expected, no significant enrichment identified:
