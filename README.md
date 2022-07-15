@@ -42,37 +42,56 @@ MAGenes = curated.genesets(c('MacArthur'))
 universe = curated.genesets(c('HGNC_universe'))$Gene
 (n = length(universe))
 ```
-
+### Create a toy dataset
 In this example, we will try both the hypergeometric test and weighted enrichment tests, including GSEA and logistic regression, by geneating a toy dataset through simulation of random gene-phenotype associations. 
 ```
 set.seed(123)
-toy = data.frame(Gene=universe, Phenotype='Simulated', Z=rnorm(n,0,1), stringsAsFactors=FALSE)
+toy = data.frame(Gene = universe, Phenotype = 'Simulated', Z = rnorm(n, 0, 1), stringsAsFactors = FALSE)
 ```
 
-Select genes with absolute Z value larger than 3 and separate them into up and down groups based on the sign of Z value, then run the hypergeometric test on both groups against the MacAuther gene sets:
+Select genes with absolute Z value larger than 3 and separate them into up and down groups based on the sign of Z value.
 ```
-toy.3=toy[abs(toy$Z)>3,]
-toy.3$Direction=ifelse(toy.3$Z > 0, 'Up','Down')
-fit1 = GOtest(x=toy.3[,c('Gene','Direction')], go=MAGenes, query.population=universe, background='query', name.x='Toy', name.go='MacArthur', method='hypergeometric')
+toy.3 = toy[abs(toy$Z) > 3, ]
+toy.3$Direction = ifelse(toy.3$Z > 0, 'Up', 'Down')
+```
+
+### Hypergeometric test
+Run the hypergeometric test on both groups against the MacAuther gene sets:
+```
+fit1 = GOtest(x = toy.3[, c('Gene', 'Direction')], go = MAGenes, query.population = universe, background = 'query', name.x = 'Toy', name.go = 'MacArthur', method = 'hypergeometric')
 ```
 As expected, no significant enrichment identified:
 ```
 head(fit1)
 ```
 
+To test the enrichment in the MSigDB gene sets using the hypergeometric test, run
+```
+fit2 = msigdb.gsea(x = toy.3[, c('Gene', 'Direction')], genesets = c('c2.cp'), query.population = universe, background = 'query')
+head(fit2)
+```
+
+### GSEA
 Next, we are going to run weighted enrichment tests on the full test dataset by using GSEA or logistic regression. First, run GSEA:
 ```
-fit2 = GOtest(x=toy, go=MAGenes, name.x='Toy', name.go='MacArthur', query.population=universe, background='query', method='GSEA')
-head(fit2)
+fit3 = GOtest(x = toy, go = MAGenes, name.x = 'Toy', name.go = 'MacArthur', query.population = universe, background = 'query', method = 'GSEA')
+head(fit3)
 ```
 Again there is no significant enrichment. Let us check the GSEA running enrichment score plot for the top 10 MacArthur terms:
 ```
-plotGseaEnrTable(GseaTable=fit2[1:10,], x=toy, go=MAGenes)
+plotGseaEnrTable(GseaTable = fit2[1:10, ], x = toy, go = MAGenes)
 ```
 ![GSEA running enrichment score example](gsea.res.png)
 
+To test the enrichment in the MSigDB gene sets using GSEA, run
+```
+fit4 = msigdb.gsea(x = toy, genesets = c('c2.cp'), query.population = universe, background = 'query', name.x = 'Toy', method = 'GSEA', permutations = 1000)
+head(fit4)
+```
+
+### Logistic regression
 Run logistic regression:
 ```
-fit3 = GOtest(x=toy, go=MAGenes, name.x='Toy', name.go='MacArthur', query.population=universe, background='query', method='logitreg')
-head(fit3)
+fit5 = GOtest(x = toy, go = MAGenes, name.x = 'Toy', name.go = 'MacArthur', query.population = universe, background = 'query', method = 'logitreg')
+head(fit5)
 ```
