@@ -2,3 +2,4 @@ inst/extdata/merck.db.human.RDS
 inst/extdata/merck.db.mouse.RDS
 inst/extdata/merck.db.rat.RDS
 R/merck.gsea.R
+man/merck.gsea.Rd
