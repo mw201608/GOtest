@@ -2,7 +2,6 @@ useDynLib(GOtest, .registration = TRUE)
 import(msigdbi)
 export(
 	msigdb.gsea,
-	merck.gsea,
 	GOtest,
 	GSEA,
 	fGSEA,
