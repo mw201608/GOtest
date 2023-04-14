@@ -19,7 +19,7 @@ library(GOtest)
 MAGenes = curated.genesets(c('MacArthur'))
 head(MAGenes)
 ```
-Some enrichment analysis methods, eg the `hypergeometric test`, require a gene universe or a population of gene background. Here we will use a pre-installed set of approved symbols for protein-coding genes by HGNC.
+Some enrichment analysis methods, eg the `hypergeometric test`, require a gene universe or a population of gene background, which will usually be all the genes expressed in your dataset. Here we will use a pre-installed set of approved symbols for protein-coding genes by HGNC.
 ```
 universe=curated.genesets(c('HGNC_universe'))$Gene
 str(universe)
