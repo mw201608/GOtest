@@ -10,6 +10,7 @@ msigdb.gsea(x, query.population=NULL, genesets=c('c2.cp', 'c5.go.bp', 'c5.go.cc'
  method=c('hypergeometric', 'GSEA', 'logitreg'), adj="BH", species=c('human', 'mouse'),
  ReportOverlap=TRUE, ncores=1, gsea.alpha=1,
  permutations=ifelse(method=='GSEA', 1000, 0), iseed=12345)
+}
 \arguments{
  \item{x}{a data.frame of query gene signatures. See \code{Details}.}
  \item{query.population}{a population of the genes from which the query gene signatures are collected.}
